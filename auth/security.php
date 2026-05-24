@@ -10,7 +10,7 @@ if (empty($_SESSION["username"])) {
         $protocolo = "http://";
     }
     $host = $_SERVER['HTTP_HOST'] ;
-    header ("Location: " . $protocolo . $host . "/auth/login.php") ;
+    header ("Location: " . $protocolo . $host . "/projeto-pw/auth/login.php") ;
     exit();
 }
 ?>

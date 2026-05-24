@@ -1,5 +1,42 @@
 <?php
 session_start();
+
+if (isset($_SESSION["username"])) {
+    header("Location: ../index.php") ;
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once '../config/config.php';
+    
+    $user_typed = strtolower(trim($_POST['username'])) ;
+    $password_typed = trim($_POST['password']) ;
+
+    if (!empty($user_typed) && !empty($password_typed)) {
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE usuario = :usuario");
+        $stmt->execute(['usuario' => $user_typed]) ;
+
+        $user_bank = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user_bank) {
+            
+            if (password_verify($password_typed, $user_bank['senha'])) {
+                $_SESSION["username"] = $user_bank['usuario'];
+                header("Location: ../dashboard.php");  
+                exit();
+            }  else {
+            $erro = "Usuário e/ou Senha Incorretos!";
+            }
+        }else {
+        $erro = "Usuário e/ou Senha Incorretos!";
+        }
+    } else {
+        $erro = "Usuário e/ou Senha Incorretos!";
+    }
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,6 +47,9 @@ session_start();
 </head>
 <body>
     <h1>Login</h1>
+    <?php if (isset($erro)){ ?>
+       <h1 style="color: red;"><?php echo $erro;?></h1>
+    <?php } ?>
     <form action="login.php" method="POST">
         <label for="username">Nome:</label>
         <input type="text" id="username" name="username" required>
@@ -17,6 +57,7 @@ session_start();
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" required>
         <br>
-        <button type="submit">Entrar</button>
+        <button type="submit" name="enter">Entrar</button>
+    </form>
 </body>
 </html>
