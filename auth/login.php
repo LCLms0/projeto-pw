@@ -2,40 +2,37 @@
 session_start();
 
 if (isset($_SESSION["username"])) {
-    header("Location: ../index.php") ;
+    header("Location: ../dashboard.php") ;
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once '../config/config.php';
     
-    $user_typed = strtolower(trim($_POST['username'])) ;
-    $password_typed = trim($_POST['password']) ;
+    $user_typed = strtolower(trim($_POST['username']));
+    $password_typed = trim($_POST['password']);
 
     if (!empty($user_typed) && !empty($password_typed)) {
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE usuario = :usuario");
-        $stmt->execute(['usuario' => $user_typed]) ;
+        $stmt->execute(['usuario' => $user_typed]);
 
         $user_bank = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user_bank) {
-            
-            if (password_verify($password_typed, $user_bank['senha'])) {
+        if ($user_bank) {   
+            if ($password_typed === $user_bank['senha']) {
                 $_SESSION["username"] = $user_bank['usuario'];
                 header("Location: ../dashboard.php");  
                 exit();
-            }  else {
-            $erro = "Usuário e/ou Senha Incorretos!";
+            } else {
+                $erro = "Usuário e/ou Senha Incorretos!";
             }
-        }else {
-        $erro = "Usuário e/ou Senha Incorretos!";
+        } else {
+            $erro = "Usuário e/ou Senha Incorretos!";
         }
     } else {
         $erro = "Usuário e/ou Senha Incorretos!";
     }
-
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Barbearia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
     <h1>Login</h1>
