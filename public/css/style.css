@@ -1,0 +1,17 @@
+.fundo-esquerdo-imagem {
+    /* O primeiro valor aplica o filtro azul transparente (rgba). O segundo carrega a sua imagem. */
+    background: linear-gradient(rgba(0, 82, 255, 0.45), rgba(0, 30, 120, 0.6)), url('../css/imgs/fundo.png') no-repeat center center;
+    
+    /* 'contain' garante que a imagem mude de tamanho mas apareça INTEIRA, sem cortar nada */
+    background-size: contain;
+    
+    /* Garante uma cor escura de fundo caso a imagem não ocupe a tela toda */
+    background-color: #06090e; 
+    
+    /* Mantém a logo centralizada na esquerda */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
