@@ -46,18 +46,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <?php if (isset($erro)){ ?>
-       <h1 style="color: red;"><?php echo $erro;?></h1>
-    <?php } ?>
-    <form action="login.php" method="POST">
-        <label for="username">Nome:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit" name="enter">Entrar</button>
-    </form>
+    <div class="container">
+    
+    <div class="row">
+        
+        <div class="col-12 col-md-7">
+            <h2>Lado da Foto e Texto</h2>
+        </div>
+
+        <div  class="col-12 col-md-5">
+            <div>
+                <h1>Login</h1>
+                <?php if (isset($erro)){ ?>
+                <h1 style="color: red;"><?php echo $erro;?></h1>
+                <?php } ?>
+                <form action="login.php" method="POST">
+                    <label for="username">Nome:</label>
+                    <input type="text" id="username" name="username" required>
+                    <br>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    <br>
+                    <button type="submit" name="enter">Entrar</button>
+                </form>
+                </div>
+        </>
+
+    </div>
+
+    </div>
 </body>
 </html>
