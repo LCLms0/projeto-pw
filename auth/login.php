@@ -51,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container-fluid">        
         <div class="row vh-100">
             
-            <div class="col-12 col-md-7 border-end border-primary fundo-esquerdo-imagem">
-                <img src="../public/css/imgs/logo.png" class="w-25 mt-5" alt="logo">        
+            <div class="col-12 col-md-7 border-end border-primary fundo-esquerdo-imagem">   
             </div>
 
-            <div class="col-12 col-md-5 d-flex flex-column justify-content-center">
+            <div class="col-12 col-md-5 d-flex flex-column justify-content-center bg-dark">
+                <img src="../public/css/imgs/logo.png" class="w-25 mt-20" alt="logo">     
                 <div>
-                    <h1>Login</h1>
+                    <h1 class="text-white">Login</h1>
                     <form action="login.php" method="POST">
                         
                         <div class="form-floating mb-4">

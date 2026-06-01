@@ -7,11 +7,4 @@
     
     /* Garante uma cor escura de fundo caso a imagem não ocupe a tela toda */
     background-color: #06090e; 
-    
-    /* Mantém a logo centralizada na esquerda */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
