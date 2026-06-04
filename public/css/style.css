@@ -49,9 +49,8 @@
 }
 
 .btn-login:hover {
-    background-color: #0b5ed7;
-    transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    background-color: #0a4ebd;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.15);
 }
 
 .caixa-login .form-floating > .form-control:focus ~ label,
@@ -104,10 +103,8 @@
 }
 
 .btn-sidebar:hover {
-    background-color: #0d6efd !important; 
-    color: #fff !important;
-    transform: translateX(5px);
-    box-shadow: 0 4px 20px rgba(13, 110, 253, 0.6); 
+    box-shadow: none;
+    background-color: #0a4ebd !important;
 }
 
 .btn-logout {
@@ -122,10 +119,9 @@
 }
 
 .btn-logout:hover {
-    background-color: #dc3545 !important; 
-    color: #fff !important;
-    transform: translateX(5px); 
-    box-shadow: 0 4px 20px rgba(220, 53, 69, 0.6); 
+    background-color: #4c1d23 !important;
+    color: #f87171 !important;
+    box-shadow: none;
 }
 
 
@@ -135,3 +131,15 @@
   font-weight: 900;
   font-style: normal;
 }
+
+
+
+.card-servicos {
+    background-color: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+}
+
+
