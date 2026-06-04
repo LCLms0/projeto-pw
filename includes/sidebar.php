@@ -2,7 +2,7 @@
                 <div class="nav flex-column nav-pills mt-0">
 
                     <div>
-                        <img class="w-100 p-3"  src="public/css/imgs/logo.png" alt="logo">
+                        <img class="w-100 p-3"  src="/projeto-pw/public/css/imgs/logo.png" alt="logo">
                     </div>
 
                     <a class="nav-link text-white btn-sidebar mb-4" href="/projeto-pw/dashboard.php">
@@ -29,4 +29,4 @@
                     </a>
                 </div>
 
-            </div>
+</div>
