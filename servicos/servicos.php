@@ -1,5 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços | Barber Control</title>
@@ -14,8 +20,7 @@
 <body>
     <div class="container-fluid">
         <div class="row vh-100">
-            <?php include __DIR__ . '/../includes/sidebar.php'; ?>
-    
+            <?php include __DIR__ . '/../includes/sidebar.php'; ?>    
             <div class="col-md-9 col-lg-10 p-4 bg-dark">
                 <div class="p-4 rounded-3 mb-4 d-flex flex-column" style="background-color: #1e2125;">
                     <h1 class="text-white montserrat">
@@ -25,32 +30,35 @@
                         Ajuste preços, durações e detalhes dos serviços disponíveis para entregar a melhor experiência e cuidado aos seus clientes.
                     </h2>
 
-                    <button class="btn-login px-3 py-2 w-25 mb-4" data-bs-toggle="modal" data-bs-target="#modalServico"
-                    >Adicionar Serviço</button>
+                    <button class="btn-login px-3 py-2 w-25 mb-4" data-bs-toggle="modal" data-bs-target="#modalServico">
+                        Adicionar Serviço
+                    </button>
 
-                    <div class="card-servicos">
-
+                    <?php if (!empty($_SESSION['sucesso_servico'])) { ?>
+                    <div class="alert-success-custom d-flex align-items-center mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2" style="font-size: 1.1rem;"></i>
+                        <div>
+                            <?php 
+                                echo htmlspecialchars($_SESSION['sucesso_servico']); 
+                                unset($_SESSION['sucesso_servico']); 
+                            ?>
+                        </div>
                     </div>
+                    <?php } ?>
+                    <div class="card-exibir">
+                        </div>
                 </div>
             </div>   
         </div>           
     </div>
-    <div class="modal fade" id="modalServico" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        
-            <div class="modal-content" style="background-color: #1e2125;">
-                <div class="modal-header">
-                    <h5 class="text-white">
-                    <i class="bi bi-scissors me-2"></i> Adicionar Novo Serviço
-                    </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="create.php" method="POST" enctype="multipart/form-data">
-    
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include __DIR__ . '/modal-create.php'; ?>
+<?php if (!empty($erro_lista)) { ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var meuModal = new bootstrap.Modal(document.getElementById('modalServico'));
+        meuModal.show();
+    });
+</script>
+<?php } ?>
 </body>
 </html>

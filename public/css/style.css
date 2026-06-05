@@ -83,6 +83,16 @@
     width: 100%; 
 }
 
+.alert-success-custom {
+    background-color: rgba(25, 135, 84, 0.1) !important; 
+    border: 1px solid rgba(25, 135, 84, 0.4) !important; 
+    color: #75b798 !important;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    width: 100%; 
+}
+
 .roboto-mono {
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
@@ -134,7 +144,7 @@
 
 
 
-.card-servicos {
+.card-exibir {
     background-color: rgba(255, 255, 255, 0.03); 
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 2.5rem;
@@ -142,4 +152,19 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
 }
 
+.modal-body .text-muted {
+    color: #a0aab5 !important;
+}
 
+/* 1. Faz os exemplos (placeholders) ficarem visíveis no fundo escuro */
+.form-control::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* 2. Remove a borda azul feia do Bootstrap e aplica o estilo sutil do seu login ao clicar */
+.form-control:focus, textarea:focus {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.2) !important;
+    color: #fff !important;
+}
