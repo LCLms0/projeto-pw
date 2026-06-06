@@ -25,34 +25,34 @@
                     
                     <div class="mb-3">
                         <label class="form-label small text-muted">Nome do Serviço</label>
-                        <input type="text" name="nome" class="form-control bg-dark text-white border-secondary" placeholder="Ex: Corte Degradê" required>
+                        <input type="text" name="nome" class="form-control" placeholder="Ex: Corte Degradê" required>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label small text-muted">Preço (R$)</label>
-                            <input type="number" step="0.01" name="preco" class="form-control bg-dark text-white border-secondary" placeholder="0.00" required>
+                            <input type="number" step="0.01" name="preco" class="form-control" placeholder="0.00" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label small text-muted">Duração (minutos)</label>
-                            <input type="number" name="duracao" class="form-control bg-dark text-white border-secondary" placeholder="Ex: 30" required>
+                            <input type="number" name="duracao" class="form-control" placeholder="Ex: 30" required>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label small text-muted">Descrição do Serviço</label>
-                        <textarea name="descricao" class="form-control bg-dark text-white border-secondary" rows="3" placeholder="O que inclui nesse serviço..."></textarea>
+                        <textarea name="descricao" class="form-control" rows="3" placeholder="O que inclui nesse serviço..."></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label small text-muted">Foto do Serviço (1080 x 1080)</label>
-                        <input type="file" name="foto" class="form-control bg-dark text-white border-secondary" accept="image/*" required>
+                        <input type="file" name="foto" class="form-control" accept="image/*" required>
                     </div>
                 </div>
 
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn-azul-custom" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary px-4" style="background-color: #75b798; border: none; color: #1e2125; font-weight: 600;">Salvar Serviço</button>
+                    <button type="button" class="btn btn-secondary px-3" data-bs-dismiss="modal" style="background-color: #343a40; border: none;">Cancelar</button>
+                    <button type="submit" class="btn btn-login px-4 py-2">Salvar Serviço</button>
                 </div>
             </form>
 

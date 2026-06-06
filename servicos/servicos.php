@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../auth/security.php';
 require_once __DIR__ . '/../config/config.php';
-// Busca todos os serviços cadastrados (do mais novo pro mais antigo)
+
 $stmt = $pdo->prepare("SELECT * FROM servicos ORDER BY id DESC");
 $stmt->execute();
 $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="/projeto-pw/public/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Changa+One:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
@@ -30,11 +30,11 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <i class="bi bi-card-checklist me-2"></i> Serviços
                     </h1>
                     <h2 class="fs-5 text-white mb-4">
-                        Ajuste preços, durações e detalhes dos serviços disponíveis para entregar a melhor experiência e cuidado aos seus clientes.
+                        Ajuste preços, durações e detalhes dos serviços cadastrados na barbearia.
                     </h2>
 
                     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-                        <button class="btn-login px-3 py-2 w-25" data-bs-toggle="modal" data-bs-target="#modalServico">
+                        <button class="btn-login px-4 py-2" data-bs-toggle="modal" data-bs-target="#modalServico">
                             Adicionar Serviço
                         </button>
 
@@ -42,6 +42,7 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <span class="position-absolute top-50 start-0 translate-middle-y ps-3 text-muted">
                                 <i class="bi bi-search text-primary"></i>
                             </span>
+                            <input type="text" id="pesquisaServico" class="form-control ps-5" placeholder="Buscar serviço pelo nome...">
                         </div>
                     </div>
 
@@ -61,7 +62,6 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php if (empty($servicos)) { ?>
                             <p class="text-muted text-center my-4">Nenhum serviço cadastrado ainda.</p>
                         <?php } else { ?>
-                            
                             <div class="container-scroll-servicos">
                                 <div class="grid-servicos">
                                     <?php foreach ($servicos as $servico) { ?>
@@ -80,23 +80,30 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <?php echo htmlspecialchars($servico['descricao']); ?>
                                                 </p>
                                                 
-                                                <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="mt-auto d-flex justify-content-between align-items-center" onclick="event.stopPropagation();">
                                                     <span class="preco-servico">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></span>
                                                     
                                                     <div>
-                                                        <button class="btn btn-sm btn-outline-secondary me-1" title="Editar"><i class="bi bi-pencil"></i></button>
-                                                        <button class="btn btn-sm btn-outline-danger" title="Deletar"><i class="bi bi-trash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $servico['id']; ?>" title="Editar">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-lixeira-dark" data-bs-toggle="modal" data-bs-target="#modalDeletar<?php echo $servico['id']; ?>" title="Deletar">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <?php include __DIR__ . '/modal-details.php'; ?>
+                                        <?php 
+                                        include __DIR__ . '/modal-details.php'; 
+                                        include __DIR__ . '/modal-edit.php'; 
+                                        include __DIR__ . '/modal-delete.php'; 
+                                        ?>
 
                                     <?php } ?>
                                 </div>
                             </div>
-                            
                         <?php } ?>
                     </div>
                 </div> 
@@ -108,13 +115,11 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Se o PHP devolveu erros de validação, força o modal de cadastro a abrir
         <?php if (!empty($erro_lista)) { ?>
             var meuModal = new bootstrap.Modal(document.getElementById('modalServico'));
             meuModal.show();
         <?php } ?>
 
-        // Pesquisa dinâmica em tempo real
         const inputPesquisa = document.getElementById('pesquisaServico');
         if (inputPesquisa) {
             inputPesquisa.addEventListener('input', function() {
@@ -124,9 +129,9 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 cards.forEach(card => {
                     const nomeServico = card.querySelector('h3').textContent.toLowerCase();
                     if (nomeServico.includes(termo)) {
-                        card.style.display = "flex"; 
+                        card.style.setProperty("display", "flex", "important"); 
                     } else {
-                        card.style.display = "none";
+                        card.style.setProperty("display", "none", "important");
                     }
                 });
             });

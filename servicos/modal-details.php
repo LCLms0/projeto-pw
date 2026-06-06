@@ -1,27 +1,57 @@
 <div class="modal fade" id="modalDetalhes<?php echo $servico['id']; ?>" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border-secondary">
-            <div class="modal-header border-bottom border-secondary">
-                <h5 class="modal-title fw-semibold"><?php echo htmlspecialchars($servico['nome']); ?></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content border-secondary" style="background-color: #1e2125;">
+            
+            <div class="modal-header border-secondary">
+                <h5 class="text-white fw-semibold">
+                    <i class="bi bi-eye me-2 text-primary"></i> Informações do Serviço
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
-            <div class="modal-body text-center">
-                <img src="/projeto-pw/public/uploads/<?php echo htmlspecialchars($servico['foto']); ?>" class="img-fluid rounded mb-3" style="max-height: 300px; width: 100%; object-fit: cover;">
+
+            <div class="modal-body text-white">
                 
-                <div class="d-flex justify-content-center gap-4 my-3">
-                    <span class="fs-5"><i class="bi bi-clock text-muted me-1"></i> <?php echo $servico['duracao']; ?> minutos</span>
-                    <span class="fs-5 fw-bold" style="color: #75b798;">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></span>
+                <div class="mb-3 pb-2 border-bottom border-secondary-subtle">
+                    <span class="label-detalhe">Nome do Serviço:</span>
+                    <p class="fs-5 fw-semibold text-white mb-0"><?php echo htmlspecialchars($servico['nome']); ?></p>
                 </div>
-                
-                <hr class="border-secondary">
-                
-                <p class="text-start p-2" style="color: #c0c0c0; white-space: pre-line; font-size: 0.95rem;">
-                    <?php echo htmlspecialchars($servico['descricao']); ?>
-                </p>
+
+                <div class="row mb-3 pb-2 border-bottom border-secondary-subtle">
+                    <div class="col-6 border-end border-secondary-subtle">
+                        <span class="label-detalhe">Preço do Serviço:</span>
+                        <p class="fs-5 fw-bold text-success mb-0">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
+                    </div>
+                    <div class="col-6 ps-3">
+                        <span class="label-detalhe">Duração do Serviço:</span>
+                        <p class="fs-5 fw-semibold text-white mb-0"><?php echo $servico['duracao']; ?> minutos</p>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <span class="label-detalhe">Descrição do Serviço:</span>
+                    <div class="p-3 rounded" style="background-color: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <p class="mb-0" style="white-space: pre-wrap; font-size: 0.95rem; color: #cbd5e1 !important;">
+                            <?php echo !empty($servico['descricao']) ? htmlspecialchars($servico['descricao']) : 'Nenhuma descrição detalhada foi informada para este serviço.'; ?>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <span class="label-detalhe">Imagem do Serviço:</span>
+                    <div class="rounded overflow-hidden border border-secondary" style="max-height: 240px; background-color: rgba(0, 0, 0, 0.2);">
+                        <img src="/projeto-pw/public/uploads/<?php echo htmlspecialchars($servico['foto']); ?>" 
+                             class="w-100 h-100" 
+                             style="object-fit: cover; max-height: 240px;" 
+                             alt="Foto do serviço <?php echo htmlspecialchars($servico['nome']); ?>">
+                    </div>
+                </div>
+
             </div>
-            <div class="modal-footer border-top border-secondary">
-                <button type="button" class="btn-azul-custom" data-bs-dismiss="modal">Fechar</button>
+
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" style="background-color: #343a40; border: none;">Fechar</button>
             </div>
+
         </div>
     </div>
 </div>
