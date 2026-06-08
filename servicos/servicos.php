@@ -60,7 +60,7 @@ $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
                     <div class="card-exibir w-100 mt-2">
                         <?php if (empty($servicos)) { ?>
-                            <p class="text-muted text-center my-4">Nenhum serviço cadastrado ainda.</p>
+                            <p class="text-white-50 text-muted text-center my-4">Nenhum serviço cadastrado ainda.</p>
                         <?php } else { ?>
                             <div class="container-scroll-servicos">
                                 <div class="grid-servicos">

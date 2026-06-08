@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["username"])) {
-    header("Location: ../dashboard.php") ;
+    header("Location: ../dashboard.php");
     exit();
 }
 
@@ -33,14 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erro = "Usuário e/ou Senha Incorretos!";
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Control Barber </title>
+    <title>Login | Control Barber</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -48,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <div class="container-fluid">        
@@ -58,18 +56,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="col-12 col-md-5 d-flex flex-column justify-content-center align-items-center bg-dark p-4">
+                
+                <div class="caixa-login w-100 d-flex flex-column align-items-center" style="max-width: 400px;">
                     
+                    <div class="text-center mb-3">
+                        <img class="img-fluid" src="/projeto-pw/public/css/imgs/logo.png" alt="logo" style="max-width: 160px;">
+                    </div>
 
-                <div class="caixa-login w-100" style="max-width: 400px;">
                     <h1 class="text-white text-center fs-2 mb-4 roboto-mono">Login</h1>
 
-                    <form action="login.php" method="POST">
+                    <form action="login.php" method="POST" class="w-100">
 
                         <?php if (!empty($erro)) { ?>
                         <div class="alert alert-danger-custom d-flex align-items-center mb-4" role="alert">
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
                             <div>
-                        <?php echo htmlspecialchars($erro); ?>
+                                <?php echo htmlspecialchars($erro); ?>
                             </div>
                         </div>
                         <?php } ?>
@@ -93,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </form>
 
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
@@ -104,11 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const iconeOlho = document.querySelector('#iconeOlho');
 
         togglePassword.addEventListener('click', function () {
-            // Modifica o tipo do input entre password e text
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
             password.setAttribute('type', type);
             
-            // Alterna o desenho do ícone do olho
             iconeOlho.classList.toggle('bi-eye');
             iconeOlho.classList.toggle('bi-eye-slash');
         });

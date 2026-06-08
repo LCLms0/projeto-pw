@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+$host = 'db';
 $db = 'barbearia_db';
 $user = 'root';
 $pass = '';

@@ -254,3 +254,40 @@ html::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-ra
     letter-spacing: 0.5px;
     margin-bottom: 0.25rem;
 }
+
+
+/* Estilos personalizados para o Dashboard */
+.painel-bg {
+    background-color: #1e2125;
+}
+
+.card-dashboard-info {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-azul {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.card-verde {
+    background: linear-gradient(135deg, #065f46, #10b981);
+}
+
+.card-laranja {
+    background: linear-gradient(135deg, #7c2d12, #f97316);
+}
+
+.label-card-dashboard {
+    letter-spacing: 0.5px;
+}
+
+.icone-container-dashboard {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.atalho-box-dashboard {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

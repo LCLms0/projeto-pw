@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Servidor Web (PHP + Apache)
+  web:
+    build: .
+    container_name: barber_web
+    ports:
+      - "8080:80" # Mapeia a porta 8080 do seu PC para a porta 80 do container
+    volumes:
+      - .:/var/www/html/ # Sincroniza os arquivos do seu PC em tempo real com o container
+    depends_on:
+      - db
+
+  # Banco de Dados (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: barber_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: barbearia_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/var/lib/mysql
+
+volumes:
+  db_data:
