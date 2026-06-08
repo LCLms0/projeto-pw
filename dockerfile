@@ -11,4 +11,4 @@ RUN docker-php-ext-install pdo pdo_mysql
 WORKDIR /var/www/html/
 
 # Dá as permissões corretas para a pasta do projeto (importante para uploads de fotos)
-RUN chown -W www-data:www-data /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/
