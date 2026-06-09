@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/projeto-pw/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="caixa-login w-100 d-flex flex-column align-items-center" style="max-width: 400px;">
                     
                     <div class="text-center mb-3">
-                        <img class="img-fluid" src="/projeto-pw/public/css/imgs/logo.png" alt="logo" style="max-width: 160px;">
+                        <img class="img-fluid" src="/public/css/imgs/logo.png" alt="logo" style="max-width: 160px;">
                     </div>
 
                     <h1 class="text-white text-center fs-2 mb-4 roboto-mono">Login</h1>

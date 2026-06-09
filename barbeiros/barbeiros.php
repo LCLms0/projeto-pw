@@ -26,7 +26,7 @@ $lista_servicos = $stmt_servicos->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/projeto-pw/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@ $lista_servicos = $stmt_servicos->fetchAll(PDO::FETCH_ASSOC);
                                     <?php foreach ($barbeiros as $barbeiro) { ?>
                                         
                                         <div class="card-servico-custom" data-bs-toggle="modal" data-bs-target="#modalDetalhesBarbeiro<?php echo $barbeiro['id']; ?>">
-                                            <img src="/projeto-pw/public/uploads/<?php echo htmlspecialchars($barbeiro['foto']); ?>" class="card-servico-img" alt="<?php echo htmlspecialchars($barbeiro['nome']); ?>">
+                                            <img src="/public/uploads/<?php echo htmlspecialchars($barbeiro['foto']); ?>" class="card-servico-img" alt="<?php echo htmlspecialchars($barbeiro['nome']); ?>">
                                             
                                             <div class="card-servico-corpo">
                                                 <h3 class="text-white fs-5 mb-1 montserrat"><?php echo htmlspecialchars($barbeiro['nome']); ?></h3>

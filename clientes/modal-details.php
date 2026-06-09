@@ -31,7 +31,7 @@
                 <div class="mb-2">
                     <span class="label-detalhe">Foto de Perfil:</span>
                     <div class="rounded overflow-hidden border border-secondary" style="max-height: 240px; background-color: rgba(0, 0, 0, 0.2);">
-                        <img src="/projeto-pw/public/uploads/<?php echo htmlspecialchars($cliente['foto']); ?>" 
+                        <img src="/public/uploads/<?php echo htmlspecialchars($cliente['foto']); ?>" 
                              class="w-100 h-100" 
                              style="object-fit: cover; max-height: 240px;" 
                              alt="Foto de <?php echo htmlspecialchars($cliente['nome']); ?>">
