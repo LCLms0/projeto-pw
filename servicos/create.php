@@ -46,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $altura_orig = imagesy($img_original);
 
                 $menor_lado = min($largura_orig, $altura_orig);
-                $src_x = ($largura_orig - $menor_lado) / 2;
-                $src_y = ($altura_orig - $menor_lado) / 2;
+                $src_x = (int) round(($largura_orig - $menor_lado) / 2);
+                $src_y = (int) round(($altura_orig - $menor_lado) / 2);
 
                 $tamanho_alvo = 1080;
                 $img_quadrada = imagecreatetruecolor($tamanho_alvo, $tamanho_alvo);
