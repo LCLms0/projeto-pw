@@ -4,10 +4,14 @@ require_once __DIR__ . '/../config/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = trim($_POST['nome']);
-    $telefone = trim($_POST['telefone']);
+    $telefone = preg_replace('/\D/', '', $_POST['telefone']);
     $bio = trim($_POST['bio']);
     $servico_id = !empty($_POST['servico_id']) ? intval($_POST['servico_id']) : null;
     $nome_foto = 'default-barber.png'; // Foto padrão caso falte upload
+
+    if (strlen($telefone) < 10 || strlen($telefone) > 11) {
+        $erros[] = "Telefone inválido.";
+    }
 
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['foto']['tmp_name'];
