@@ -25,6 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_FILES['foto']) || $_FILES['foto']['error'] !== UPLOAD_ERR_OK) {
         $erros[] = "Erro no envio da foto. Certifique-se de escolher um arquivo.";
     }
+    if (empty($nome)) {
+        $erros[] = "O nome do serviço é obrigatório.";
+    }
+    if (is_numeric($nome)) {
+        $erros[] = "O nome do serviço não pode ser composto apenas por números.";
+    }
+    if (strlen($nome) > 100) {
+        $erros[] = "O nome do serviço está muito longo (máximo de 100 caracteres).";
+    }
 
     if (empty($erros)) {
         $file_tmp = $_FILES['foto']['tmp_name'];

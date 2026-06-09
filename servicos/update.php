@@ -2,12 +2,44 @@
 require_once __DIR__ . '/../auth/security.php';
 require_once __DIR__ . '/../config/config.php';
 
+$erros = [];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id'])) {
     $id = intval($_POST['id']);
     $nome = trim($_POST['nome']);
     $preco = floatval($_POST['preco']);
     $duracao = intval($_POST['duracao']);
     $descricao = trim($_POST['descricao']);
+
+    unset($_SESSION['sucesso_servico']);
+
+    // --- AS MESMAS VALIDAÇÕES DO CREATE.PHP ---
+    if ($preco <= 0) {
+        $erros[] = "O preço do serviço deve ser maior que zero!";
+    }
+    
+    if ($duracao <= 0) {
+        $erros[] = "A duração do serviço deve ser maior que zero!";
+    }
+
+    if (empty($nome)) {
+        $erros[] = "O nome do serviço é obrigatório.";
+    }
+
+    if (is_numeric($nome)) {
+        $erros[] = "O nome do serviço não pode ser composto apenas por números.";
+    }
+
+    if (strlen($nome) > 100) {
+        $erros[] = "O nome do serviço está muito longo (máximo de 100 caracteres).";
+    }
+
+    // Se houver qualquer erro de preenchimento, interrompe e volta exibindo o erro
+    if (!empty($erros)) {
+        $erro_lista = $erros;
+        include 'servicos.php';
+        exit();
+    }
 
     // 1. Busca o serviço atual para saber qual é a foto antiga
     $stmt = $pdo->prepare("SELECT foto FROM servicos WHERE id = :id");
@@ -46,7 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id'])) {
         }
     }
 
-
     $stmt_update = $pdo->prepare("UPDATE servicos SET nome = :nome, preco = :preco, duracao = :duracao, descricao = :descricao, foto = :foto WHERE id = :id");
     $stmt_update->execute([
         'nome' => $nome,
@@ -56,7 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id'])) {
         'foto' => $nome_foto,
         'id' => $id
     ]);
-
 
     $_SESSION['sucesso_servico'] = "Serviço atualizado com sucesso!";
 }

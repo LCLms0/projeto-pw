@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../auth/security.php';
 require_once __DIR__ . '/../config/config.php';
 
+$erros = []; 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = trim($_POST['nome']);
     $telefone = preg_replace('/\D/', '', $_POST['telefone']);
@@ -9,10 +11,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico_id = !empty($_POST['servico_id']) ? intval($_POST['servico_id']) : null;
     $nome_foto = 'default-barber.png'; // Foto padrão caso falte upload
 
+    unset($_SESSION['sucesso_barbeiro']);
+    // ---VALIDAÇÕES ---
+    if (empty($nome)) {
+        $erros[] = "O nome do barbeiro é obrigatório.";
+    }
+    if (is_numeric($nome)) {
+        $erros[] = "O nome do barbeiro não pode ser composto apenas por números.";
+    }
+    if (strlen($nome) > 100) {
+        $erros[] = "O nome do barbeiro está muito longo (máximo de 100 caracteres).";
+    }
+    // --- VALIDAÇÃO DO TELEFONE ---
     if (strlen($telefone) < 10 || strlen($telefone) > 11) {
-        $erros[] = "Telefone inválido.";
+        $erros[] = "Telefone inválido. Insira um número com DDD válido.";
     }
 
+    // Se houver qualquer erro de preenchimento, interrompe o script e volta exibindo os erros
+    if (!empty($erros)) {
+        $erro_lista = $erros;
+        include 'barbeiros.php';
+        exit();
+    }
+
+    // --- ARQUIVO DE FOTO ---
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['foto']['tmp_name'];
         $fileName = $_FILES['foto']['name'];
