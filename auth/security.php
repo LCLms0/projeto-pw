@@ -6,4 +6,5 @@ if (empty($_SESSION["username"])) {
     header("Location: /auth/login.php");
     exit();
 }
+
 ?>

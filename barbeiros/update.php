@@ -83,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['id'])) {
         'id' => $id
     ]);
 
-    $_SESSION['sucesso_barbeiro'] = "Dados do barbeiro updated!";
+    $_SESSION['sucesso_barbeiro'] = "Dados do barbeiro Atualizados!";
 }
 header("Location: barbeiros.php");
 exit();
+
+// finalizado

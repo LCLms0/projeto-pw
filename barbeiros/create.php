@@ -63,3 +63,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 header("Location: barbeiros.php");
 exit();
+
+// finalizado

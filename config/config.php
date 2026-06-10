@@ -1,4 +1,10 @@
 <?php
+ob_start(); // Garante que nenhum espaço ou HTML quebre os redirecionamentos header()
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $host = 'db';
 $db = 'barber_control';
 $user = 'root';
