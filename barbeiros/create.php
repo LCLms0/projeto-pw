@@ -49,14 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $stmt = $pdo->prepare("INSERT INTO barbeiros (nome, telefone, bio, servico_id, foto) VALUES (:nome, :telefone, :bio, :servico_id, :foto)");
-    $stmt->execute([
-        'nome' => $nome,
-        'telefone' => $telefone,
-        'bio' => $bio,
-        'servico_id' => $servico_id,
-        'foto' => $nome_foto
-    ]);
+    try {
+            $stmt = $pdo->prepare("INSERT INTO barbeiros (nome, telefone, bio, servico_id, foto) VALUES (:nome, :telefone, :bio, :servico_id, :foto)");
+            $stmt->execute([
+                ':nome'       => $nome,
+                ':telefone'   => $telefone,
+                ':bio'        => $bio,
+                ':servico_id' => $servico_id,
+                ':foto'       => $nome_foto
+            ]);
+
+            $_SESSION['sucesso_barbeiro'] = "Barbeiro adicionado com sucesso!";
+        } catch (PDOException $e) {
+            // Se o banco rejeitar o comando, o script para aqui e mostra o motivo real
+            die("Erro no banco de dados: " . $e->getMessage());
+        }    
 
     $_SESSION['sucesso_barbeiro'] = "Barbeiro adicionado com sucesso!";
 }
